@@ -1,0 +1,306 @@
+/*
+Author: jimo1001
+Last revision: 2011-07-17, 12:00 GMT+9
+*/
+
+body {
+    margin: 0;
+}
+
+#nav {
+    padding: 0;
+    margin: 0;
+    background-color: #2d2d2d;
+    color: #CCC;
+}
+
+#mainnav {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    border: 0;
+    background-image: none;
+    background-color: #2d2d2d;
+    font: 13px/24px Arial,sans-serif;
+}
+
+#mainnav ul {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font: 13px/24px Arial,sans-serif;
+}
+
+#mainnav li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    border: 0;
+}
+
+#mainnav a {
+    display: inline-block;
+}
+
+#mainnav :link, #mainnav :visited {
+    padding: 0 0.5em;
+    border: 0;
+    border-top: 2px solid #2d2d2d;
+    background: none;
+    color: #CCC;
+}
+
+#mainnav :link:hover, #mainnav :visited:hover {
+    border: 0;
+    border-top: 2px solid #444;
+    background-color: #444;
+}
+
+#mainnav .active :link, #mainnav .active :visited {
+    border: 0;
+    border-top: 2px solid #C30;
+    background: none;
+}
+
+#mainnav .active :link:hover, #mainnav .active :visited:hover {
+    border: 0;
+    border-top: 2px solid #C30;
+    background-color: #444;
+}
+
+#metanav {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 24px;
+}
+
+#metanav ul {
+    height: 24px;
+    font: 13px/24px Arial,sans-serif;
+}
+
+#metanav li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+    border: 0;
+}
+
+#metanav :link, #metanav :visited {
+    padding: 0 0.5em;
+    border: 0;
+    background: none;
+    color: #CCC;
+}
+
+#metanav span {
+    display: inline-block;
+    height: 24px;
+}
+
+#metanav span:not(.active):hover {
+    background-color: #444;
+}
+
+#metanav #nav-settings {
+    cursor: pointer;
+    padding: 0;
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-left: 1px solid #666;
+    background: url('img/gear.png') no-repeat center;
+}
+
+#metanav #nav-settings.active {
+    background-color: #FFF;
+    border-color: #FFF;
+    color: #36C;
+    z-index: 999;
+    -webkit-box-shadow: 0 1px 3px 1px #CCC;
+}
+
+#metanav #nav-settings:not(.active):hover {
+    background-color: #444;
+}
+
+#metanav-login {
+    padding: 0 0.5em;
+    border: 0;
+    border-top: 2px solid #2d2d2d;
+    display: inline-block;
+    background: none;
+    color: #CCC;
+    cursor: pointer;
+}
+
+#metanav-login:hover {
+    border: 0;
+    border-top: 2px solid #444;
+    background-color: #444;
+}
+
+#metanav-login.active {
+    background-color: #FFF;
+    border-color: #FFF;
+    color: #36C;
+    z-index: 999;
+    -webkit-box-shadow: 0 1px 3px 1px #CCC;
+}
+
+#metanav-login-more {
+    padding: 0.5em;
+    border: 1px solid #CCC;
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+    background: #FFF;
+    position: absolute;
+    left: 26px;
+    top: 30px;
+    z-index: 2;
+    width: 200px;
+    -webkit-box-shadow: 0 1px 5px 1px #CCC;
+}
+
+#metanav-login-more ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5em;
+}
+
+#metanav-login-more li {
+    display: block;
+    border-top: 0;
+}
+
+#metanav-login-more :link, #metanav-login-more :visited {
+    padding: 0.5em;
+    border: 0;
+    text-decoration: none;
+    color: #36C;
+}
+
+#metanav-login-more :link:hover, #metanav-login-more :visited:hover {
+    background-color: #EFF3FB;
+}
+
+#metanav-logout {
+    padding: 1em 0 0.5em 0.5em;
+    border-top: 1px solid #EEE;
+}
+
+#metanav-meta-more {
+    padding: 0.5em;
+    border: 1px solid #CCC;
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+    background: #FFF;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    z-index: 2;
+    width: 200px;
+    -webkit-box-shadow: 0 1px 5px 1px #CCC;
+}
+
+#metanav-meta-more ul {
+    height: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0.5em;
+}
+
+#metanav-meta-more li {
+    display: block;
+    border-top: 0;
+}
+
+#metanav-meta-more :link, #metanav-meta-more :visited {
+    padding: 0.5em;
+    border: 0;
+    text-decoration: none;
+    color: #36C;
+}
+
+#metanav-meta-more :link:hover, #metanav-meta-more :visited:hover {
+    background-color: #EFF3FB;
+}
+
+#banner {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+#banner h1 {
+    margin: 0;
+    padding: 0.5em 0 0 2em;
+}
+
+#search input {
+    font-size: 125%;
+}
+
+#header {
+    display: inline-block;
+    width: 250px;
+}
+
+#search {
+    display: inline-block;
+}
+
+#search input[type=text] {
+    width: 500px;
+    height: 24px;
+}
+
+#search input[type=submit] {
+    height: 30px;
+    width: 60px;
+    border: 1px solid #3079ED;
+    border-radius: 2px;
+    display: inline-block;
+    background: #4D90FE;
+    color: #FFF;
+    cursor: pointer;
+    font: 13px/24px Arial,sans-serif;
+}
+
+#search input[type=submit]:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#4D90FE), to(#3079ED));
+    background: -moz-linear-gradient(top, #4D90FE, #3079ED);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4D90FE', endColorstr='#3079ED');
+}
+
+#main {
+    padding: 0.5em 1em;
+}
+
+input[type='button'], input[type='submit'], input[type='reset'] {
+    display: inline-block;
+    min-height: 20px;
+    min-width: 30px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #CCC;
+    border-right-color: #999;
+    border-bottom-color: #999;
+    border-left-color: #CCC;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F7F7F7), to(#DDDDDD));
+    background: -moz-linear-gradient(top, #F7F7F7, #DDDDDD);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7', endColorstr='#DDDDDD');
+}
+input[type='button']:hover, input[type='submit']:hover, input[type='reset']:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDDDDD), to(#AAAAAA));
+    background: -moz-linear-gradient(top, #DDDDDD, #AAAAAA);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#AAAAAA');
+}

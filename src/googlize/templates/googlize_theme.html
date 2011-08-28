@@ -1,0 +1,142 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:i18n="http://genshi.edgewall.org/i18n"
+      py:strip="">
+
+  <div py:def="mainnav()" id="mainnav" class="nav">
+    <ul py:if="chrome.nav.mainnav">
+      <py:for each="idx, item in enumerate(chrome.nav.mainnav)" py:if="item.name != 'admin'">
+        <li class="${classes(first_last(idx, chrome.nav.mainnav), active=item.active)}">${item.label}</li>
+      </py:for>
+    </ul>
+  </div>
+
+  <div py:def="metanav()" id="metanav" class="nav">
+    <ul py:if="chrome.nav.metanav">
+      <li py:for="item in [item for item in chrome.nav.metanav if item.name == 'login']">
+        <span id="${req.authname != 'anonymous' and 'metanav-login' or None}">${item.label}</span>
+      </li>
+      <li><div id="nav-settings"></div></li>
+    </ul>
+    <div id="metanav-login-more" style="display: none">
+      <ul py:if="chrome.nav.metanav">
+        <li py:for="item in [item for item in chrome.nav.metanav if item.name == 'prefs']">${item.label}</li>
+      </ul>
+      <div id="metanav-logout" py:for="item in [item for item in chrome.nav.metanav if item.name == 'logout']">${item.label}</div>
+    </div>
+    <div id="metanav-meta-more" style="display: none">
+      <ul py:if="chrome.nav.metanav">
+        <li py:for="item in [item for item in chrome.nav.metanav if item.name not in ['prefs', 'login', 'logout']]">${item.label}</li>
+        <li py:for="item in chrome.nav.mainnav" py:if="item.name == 'admin'">${item.label}</li>
+      </ul>
+    </div>
+  </div>
+
+  <py:match path="body" once="true" buffer="false"><body>
+    <script>
+      (function ($) {
+        $(document).ready(function () {
+          $("#metanav-login").click(function () {
+            var o = $("#metanav-login-more");
+            if (o.is(":visible")) {
+              o.hide("fast");
+              $(this).removeClass("active");
+            } else {
+              $(this).addClass("active");
+              o.show("fast", function () {
+                $(window).one("click", function () {
+                  $("#metanav-login-more").hide("fast");
+                  $("#metanav-login").removeClass("active");
+                });
+              });
+            }
+          });
+          $("#nav-settings").click(function () {
+            var o = $("#metanav-meta-more");
+            if (o.is(":visible")) {
+              o.hide("fast");
+              $(this).removeClass("active");
+            } else {
+              $(this).addClass("active");
+              o.show("fast", function () {
+                $(window).one("click", function () {
+                  $("#metanav-meta-more").hide("fast");
+                  $("#nav-settings").removeClass("active");
+                });
+              });
+            }
+          });
+          return false;
+        });
+      }(jQuery));
+    </script>
+    <div id="nav">
+      ${mainnav()}
+      ${metanav()}
+    </div>
+    <div id="banner">
+      <div id="header" py:choose="">
+        <a py:when="chrome.logo.src" id="logo" href="${chrome.logo.link or href.wiki('TracIni')+'#header_logo-section'}"><img
+          src="${chrome.logo.src}" alt="${chrome.logo.alt}"
+          height="${chrome.logo.height or None}" width="${chrome.logo.width or None}" /></a>
+        <h1 py:otherwise=""><a href="${chrome.logo.link}">${project.name}</a></h1>
+      </div>
+      <div py:if="not defined('trac_error_rendering') and 'SEARCH_VIEW' in perm"
+           id="search">
+        <form py:with="module = req.path_info.lstrip('/').split('/')[0]; mapping = {'roadmap': 'milestone', 'query': 'ticket', 'report': 'ticket', 'newticket': 'ticket', 'browser': 'changeset', 'log': 'changeset', 'search': ' ', 'wiki': 'wiki'}; m = (module == '') and ' ' or module in mapping and mapping[module] or None"
+              action="${href('/search')}" method="get">
+          <py:if test="m is not None">
+            <label for="proj-search">Search:</label>
+            <input py:if="m" type="hidden" name="$m" value="on"/>
+            <input type="text" id="proj-search" name="q" size="18" accesskey="f" value="" placeholder="Search ${m.title()}" />
+            <input type="submit" value="${_('Search')}" />
+          </py:if>
+        </form>
+      </div>
+    </div>
+
+    <div id="main">
+      <xi:include py:if="value_of('resourcepath_template')" href="${resourcepath_template}" />
+
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul py:if="chrome.ctxtnav">
+              <li py:for="i, elm in enumerate(chrome.ctxtnav)"
+                  class="${classes(first_last(i, chrome.ctxtnav))}">$elm</li>
+          </ul>
+        <hr />
+      </div>
+
+      <div id="warning" py:if="chrome.warnings" class="system-message">
+        <py:choose test="len(chrome.warnings)">
+          <strong>Warning:</strong>
+          <py:when test="1">${chrome.warnings[0]}</py:when>
+          <py:otherwise><ul><li py:for="warning in chrome.warnings">$warning</li></ul></py:otherwise>
+        </py:choose>
+      </div>
+      <div id="notice" py:if="chrome.notices" class="system-message">
+        <py:choose test="len(chrome.notices)">
+          <py:when test="1">${chrome.notices[0]}</py:when>
+          <py:otherwise><ul><li py:for="notice in chrome.notices">$notice</li></ul></py:otherwise>
+        </py:choose>
+      </div>
+
+      ${select('*|text()|comment()')}
+    </div>
+
+    <div id="footer" xml:lang="en"><hr/>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img
+        src="${chrome.htdocs_location}trac_logo_mini.png" height="30"
+        width="107" alt="Trac Powered"/></a>
+      <p class="left" i18n:msg="version">
+        Powered by <a href="${href.about()}"><strong>Trac ${trac.version}</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.
+      </p>
+      <p class="right">${chrome.footer}</p>
+    </div>
+  </body></py:match>
+</html>
