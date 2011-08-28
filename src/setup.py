@@ -21,7 +21,8 @@ setup(
             'htdocs/*.png',
             'htdocs/*.css',
             'htdocs/img/*.gif',
-            'htdocs/img/*.jpg'
+            'htdocs/img/*.jpg',
+	    'htdocs/img/*.png'
         ]
     },
     author = 'jimo1001',

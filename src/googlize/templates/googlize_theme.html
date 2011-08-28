@@ -91,8 +91,8 @@
               action="${href('/search')}" method="get">
           <py:if test="m is not None">
             <label for="proj-search">Search:</label>
-            <input py:if="m" type="hidden" name="$m" value="on"/>
-            <input type="text" id="proj-search" name="q" size="18" accesskey="f" value="" placeholder="Search ${m.title()}" />
+            <input py:if="m.strip()" type="hidden" name="$m" value="on"/>
+            <input type="text" id="proj-search" name="q" size="18" accesskey="f" value="$req.args.q" placeholder="Search ${m.title()}" />
             <input type="submit" value="${_('Search')}" />
           </py:if>
         </form>
