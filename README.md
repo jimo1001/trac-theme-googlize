@@ -1,0 +1,1 @@
+![screenshot](src/googlize/htdocs/screenshot.png)
