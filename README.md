@@ -1,1 +1,1 @@
-![screenshot](raw/master/src/googlize/htdocs/screenshot.png)
+![screenshot](trac-theme-googlize/raw/master/src/googlize/htdocs/screenshot.png)
