@@ -179,10 +179,12 @@ body {
 }
 
 #metanav-login-more :link, #metanav-login-more :visited {
-    padding: 0.5em;
+    padding: 5px;
     border: 0;
     text-decoration: none;
     color: #36C;
+    display: inline-block;
+    width: 180px;
 }
 
 #metanav-login-more :link:hover, #metanav-login-more :visited:hover {
@@ -191,6 +193,7 @@ body {
 
 #metanav-logout {
     padding: 1em 0 0.5em 0.5em;
+    margin: 1em 0 0;
     border-top: 1px solid #EEE;
 }
 
@@ -221,10 +224,12 @@ body {
 }
 
 #metanav-meta-more :link, #metanav-meta-more :visited {
-    padding: 0.5em;
+    padding: 5px;
     border: 0;
     text-decoration: none;
     color: #36C;
+    display: inline-block;
+    width: 180px;
 }
 
 #metanav-meta-more :link:hover, #metanav-meta-more :visited:hover {
