@@ -87,7 +87,9 @@
       </div>
       <div py:if="not defined('trac_error_rendering') and 'SEARCH_VIEW' in perm"
            id="search">
-        <form py:with="module = req.path_info.lstrip('/').split('/')[0]; mapping = {'roadmap': 'milestone', 'query': 'ticket', 'report': 'ticket', 'newticket': 'ticket', 'browser': 'changeset', 'log': 'changeset', 'search': ' ', 'wiki': 'wiki'}; m = (module == '') and ' ' or module in mapping and mapping[module] or None"
+        <form py:with="module = req.path_info.lstrip('/').split('/')[0];
+                       mapping = {'roadmap': 'milestone', 'query': 'ticket', 'report': 'ticket', 'newticket': 'ticket', 'browser': 'changeset', 'log': 'changeset', 'search': ' ', 'wiki': 'wiki'};
+                       m = (module == '') and ' ' or module in mapping and mapping[module] or None"
               action="${href('/search')}" method="get">
           <py:if test="m is not None">
             <label for="proj-search">Search:</label>
@@ -98,19 +100,20 @@
         </form>
       </div>
     </div>
-
-    <div id="main">
+    <div id="vr-nav">
       <xi:include py:if="value_of('resourcepath_template')" href="${resourcepath_template}" />
-
       <div id="ctxtnav" class="nav">
         <h2>Context Navigation</h2>
-          <ul py:if="chrome.ctxtnav">
-              <li py:for="i, elm in enumerate(chrome.ctxtnav)"
-                  class="${classes(first_last(i, chrome.ctxtnav))}">$elm</li>
-          </ul>
+        <ul py:if="chrome.ctxtnav">
+          <li py:for="i, elm in enumerate(chrome.ctxtnav)"
+              class="${classes(first_last(i, chrome.ctxtnav))}">$elm</li>
+        </ul>
         <hr />
       </div>
+      <div id="ab-name">$ab_name</div>
+    </div>
 
+    <div id="main">
       <div id="warning" py:if="chrome.warnings" class="system-message">
         <py:choose test="len(chrome.warnings)">
           <strong>Warning:</strong>

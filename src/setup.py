@@ -22,7 +22,7 @@ setup(
             'htdocs/*.css',
             'htdocs/img/*.gif',
             'htdocs/img/*.jpg',
-	    'htdocs/img/*.png'
+            'htdocs/img/*.png'
         ]
     },
     author = 'jimo1001',
@@ -39,6 +39,7 @@ setup(
     entry_points = {
         'trac.plugins': [
             'googlize.theme = googlize.theme',
+            'googlize.web_ui = googlize.web_ui',
         ]
     },
 )

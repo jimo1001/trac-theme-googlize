@@ -309,3 +309,18 @@ input[type='button']:hover, input[type='submit']:hover, input[type='reset']:hove
     background: -moz-linear-gradient(top, #DDDDDD, #AAAAAA);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#AAAAAA');
 }
+
+#vr-nav {
+    position: relative;
+    height: 50px;
+    background-color: white;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+#ab-name {
+    position: absolute;
+    top: 17px;
+    margin-left: 43px;
+    color: #DD4B39;
+    font: 20px "Arial";
+}
