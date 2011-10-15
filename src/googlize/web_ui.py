@@ -5,18 +5,25 @@
 # Created on  2011/07/17
 # @author: jimo1001
 
-from trac.web.api import IRequestFilter
 from trac.core import *
+from trac.web.api import ITemplateStreamFilter
+
+from genshi.filters.transform import StreamBuffer, Transformer
+from genshi.builder import tag
 
 class GooglizeModule(Component):
 
-    implements(IRequestFilter)
+    implements(ITemplateStreamFilter)
 
-    # IRequestFilter methods
+    # ITemplateStreamFilter a method
 
-    def pre_process_request(self, req, handler):
-        return handler
-
-    def post_process_request(self, req, template, data, content_type):
-        data['ab_name'] = 'Wiki'
-        return template, data, content_type
+    def filter_stream(self, req, _method, filename, stream, data):
+        buf = None
+        if filename == 'wiki_view.html':
+            pagename = data.get('pagename') or 'Wiki'
+        else:
+            buf = StreamBuffer()
+            pagename = data.get('pagename') or req.path_info.lstrip('/').split('/')[0]
+            stream = stream | Transformer('.//div[@id="content"]/h1').cut(buf).buffer()
+        stream = stream | Transformer('.//div[@id="ab-name"]').append(buf or tag.h1(pagename))
+        return stream
