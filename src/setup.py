@@ -40,6 +40,7 @@ setup(
         'trac.plugins': [
             'googlize.theme = googlize.theme',
             'googlize.web_ui = googlize.web_ui',
+            'googlize.api = googlize.api',
         ]
     },
 )

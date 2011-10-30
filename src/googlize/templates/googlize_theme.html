@@ -86,7 +86,7 @@
         <h1 py:otherwise=""><a href="${chrome.logo.link}">${project.name}</a></h1>
       </div>
       <div py:if="not defined('trac_error_rendering') and 'SEARCH_VIEW' in perm"
-           id="search">
+           id="header-search">
         <form py:with="module = req.path_info.lstrip('/').split('/')[0];
                        mapping = {'roadmap': 'milestone', 'query': 'ticket', 'report': 'ticket', 'newticket': 'ticket', 'browser': 'changeset', 'log': 'changeset', 'search': ' ', 'wiki': 'wiki'};
                        m = (module == '') and ' ' or module in mapping and mapping[module] or None"
