@@ -29,7 +29,7 @@ class GooglizeModule(Component):
             for provider in self.submenu_item_providers:
                 if provider.match_request(req, template):
                     provider.get_submenu_items(req, data)
-            return template, data, content_type
+        return template, data, content_type
 
     # ITemplateStreamFilter a method
 
